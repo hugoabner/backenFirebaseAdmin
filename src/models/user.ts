@@ -9,8 +9,6 @@ export interface User {
 	photoURL : string,
 	disabled : boolean
 }
-
-
 export interface TypedRequestBody<T> extends Request {
 	body: T;
 }

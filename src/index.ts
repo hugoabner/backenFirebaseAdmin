@@ -1,57 +1,18 @@
-import express from "express";
-import { router } from "./decorators/routes.decorators"; // Importa el router configurado con decoradores
+import express, { Application } from "express";
+import { router } from "./decorators/routes.decorators"; // Asegúrate de que esta ruta sea correcta
+import "./controllers/user.controller"; // Importa el controlador para que se registre
 
-const app = express();
+const app: Application = express();
+const PORT = 3000;
 
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json());
+app.use('/api/v1',router);
 
-app.use("/api", router); // Usa el router configurado con decoradores
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something went wrong!" });
 });
 
-
-
-
-
-
-// import express from 'express';
-// import { router } from './decorators/routes.decorators';
-
-// const app = express();
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.get('/status', (req, res) => {
-//   res.json({ message: 'Servidor ejecutándose en el puerto 3000' });
-// });
-
-// app.listen(3000, () => {
-//   console.log('Servidor ejecutándose en el puerto 3000');
-// });
-
-
-// import { Router } from "express";
-// import { UserController } from "../controllers/user.controller";
-
-// export class UserRoutes {
-//   public router: Router;
-//   private userController: UserController;
-
-//   constructor() {
-//     this.router = Router();
-//     this.userController = new UserController();
-//     this.initializeRoutes();
-//   }
-
-//   private initializeRoutes() {
-//     this.router.post("/user/create", (req, res) => this.userController.createUser(req, res));
-//     this.router.get("/user/list", (req, res) => this.userController.getUsers(req, res));
-//     // Otras rutas...
-//   }
-// }
-
-// const userRoutes = new UserRoutes();
-// export default userRoutes.router;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

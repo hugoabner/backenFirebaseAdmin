@@ -33,17 +33,3 @@ export class UserService {
 		}
 	}
 }
-
-
-
-
-
-
-
-// email: 'user@example.com',
-// 			emailVerified: false,
-// 			phoneNumber: '+11234567890',
-// 			password: 'secretPassword',
-// 			displayName: 'John Doe',
-// 			photoURL: 'http://www.example.com/12345678/photo.png',
-// 			disabled: false
