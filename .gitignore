@@ -25,7 +25,7 @@ node_modules/target/
 /build/
 /node_modules/
 src/credential.json
-
+src/environment.ts
 ### VS Code ###
 .vscode/
 
