@@ -25,7 +25,6 @@ export class UserService {
 				console.log('user', userRecord.toJSON());
 			});
 			if (listUsersResult.pageToken) {
-				// List next batch of users.
 				await this.listAllUsers(listUsersResult.pageToken);
 			}
 		} catch (error) {
